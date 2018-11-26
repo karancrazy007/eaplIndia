@@ -3,7 +3,10 @@ Mock website
 
 ---
 
-*List of Plugins Used* -  1. VueX, 2. Vue-table-2, 3. Vue-router
+**List of Plugins Used**
+* VueX, 
+* Vue-table-2,
+* Vue-router
 
 ---
 
