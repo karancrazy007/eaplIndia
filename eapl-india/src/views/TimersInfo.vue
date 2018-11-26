@@ -11,14 +11,14 @@
         </div>
         <div class="media-content">
           <div class="content">
-            <p>
+            <section>
               <strong>{{selectedTimer.name}}</strong>
               <div class="is-pulled-right">
-                <button class="button" @click="change='down'">-</button><input type="number" class="input" style="width: 80px;" v-model="selectedVal"><button class="button" @click="change='up'">+</button>
+                <button class="button" @click="decrementSelected()">-</button><input type="number" class="input" style="width: 80px;" v-model="selectedVal"><button class="button" @click="incrementSelected()">+</button>
               </div>
               <br/>
               {{selectedTimer.info}}
-            </p>
+            </section>
           </div>
         </div>
       </article>
@@ -39,6 +39,7 @@ export default {
   data (){
     return {
       change: null,
+      selectedVal: 0
     }
   },
   created () {
@@ -50,14 +51,16 @@ export default {
     },
     selectedTimer () {
       return this.parts.timers[this.id];
+    }
+  },
+  methods: {
+    incrementSelected (){
+      this.$store.commit('incrementSelected', {idx: this.selectedTimer.id});
+      this.selectedVal = this.selectedTimer.selected;
     },
-    selectedVal () {
-      if(this.change == 'up') 
-        this.$store.commit('incrementSelected', {idx: this.selectedTimer.id})
-      else if(this.change == 'down')
-        this.$store.commit('decrementSelected', {idx: this.selectedTimer.id});
-      this.change = null;
-      return this.selectedTimer.selected;
+    decrementSelected (){
+      this.$store.commit('decrementSelected', {idx: this.selectedTimer.id});
+      this.selectedVal = this.selectedTimer.selected;
     }
   }
 }  

@@ -25,15 +25,11 @@
 
 export default {
   name: 'productPage',
-  // components: {
-  //   flipBoard
-  // }
   created() {
     setTimeout(()=>this.$store.dispatch('getParts'), 2500);
   },
   computed: {
     parts() {
-      console.log("PARTS: ", this.$store.state.parts)
       return this.$store.state.parts
     }
   },

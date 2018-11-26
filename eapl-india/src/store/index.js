@@ -35,9 +35,7 @@ export default new Vuex.Store({
   },
   actions: {
     getParts({commit}) {
-      console.log("TRIGGERED")
       axios.get('/api/parts').then(result => {
-        console.log("API RESPONSE: ", result);
         commit('updateParts', result.data);
       });
     },
@@ -47,9 +45,8 @@ export default new Vuex.Store({
         .then(()=>{
           commit('incrementCart', part);
         })
-        .catch((err)=> {
+        .catch(()=> {
           alert("Error while updating cart!!");
-          console.log("Error..",err);
         });
     }
   }
